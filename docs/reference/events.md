@@ -33,3 +33,19 @@ Turbo emits events that allow you to track the navigation lifecycle and respond 
 * `turbo:render` fires after Turbo renders the page. This event fires twice during an application visit to a cached location: once after rendering the cached version, and again after rendering the fresh version.
 
 * `turbo:load` fires once after the initial page load, and again after every Turbo visit. Access visit timing metrics with the `event.detail.timing` object.
+
+## Turbo Frame Events
+
+Turbo Frame elements emit events that allow you to track their navigation lifecycle and respond to content loading. Turbo fires these events on the `<turbo-frame>` element itself. Events will bubble up throughout the `<turbo-frame>` element's ancestors.
+
+* `turbo:before-frame-visit` fires before visiting a location, except when navigating by history. Access the requested location with `event.detail.url`. Cancel this event to prevent navigation.
+
+* `turbo:frame-visit` fires immediately after a visit starts.
+
+* `turbo:before-frame-cache` fires before Turbo saves the current frame to cache.
+
+* `turbo:before-frame-render` fires before rendering the frame. Access the new `<turbo-frame>` element with `event.detail.newFrame`.
+
+* `turbo:frame-render` fires after Turbo renders the frame.
+
+* `turbo:frame-load` fires once after the initial frame load, and again after every Turbo Frame navigation. Access visit timing metrics with the `event.detail.timing` object.
